@@ -41,6 +41,9 @@ async def notifications_attaques(s):
                 cible = noms[0].get_text(strip=True)
 
                 joueurs_discord = {
+                    "Arracheuse2GrandMere": "1324501678698922077",
+                    "Tete": "1443599635682689204",
+                    "Dreams": "1281515951799537737",
                     "404": "1007946209408843787",
                     "Aniel": "646019813650726923",
                     "Peregrin": "422382190161166337",
