@@ -1,12 +1,9 @@
 from bs4 import BeautifulSoup
-import asyncio
-import time
-import os
 import logging
 
-attaques_deja_envoyees = {}
+attaques_en_cours = {}
 
-def notifications_attaques(s):
+def get_attaques(s):
     logger = logging.getLogger("app")
     try:
         logger.debug("Starting notif func...")
@@ -37,10 +34,10 @@ def notifications_attaques(s):
                 continue
             timestamp = int(input_timestamp["value"])
             identifiant = (cible, attaquant, timestamp)
-            if identifiant in attaques_deja_envoyees:
+            if identifiant in attaques_en_cours:
                 continue
             # On mémorise l'attaque avec son timestamp
-            attaques_deja_envoyees[identifiant] = timestamp
+            attaques_en_cours[identifiant] = timestamp
 
             attack = []
             attack.append(identifiant)

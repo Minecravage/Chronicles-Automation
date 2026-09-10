@@ -4,9 +4,8 @@ import sys
 import os
 import asyncio
 
-from Core.Observation.notif import notifications_attaques
 from Core.Action_OG.send_attack_notification import send_notification_attack
-from Core.Observation.notif import notifications_attaques
+from Core.Observation.get_alliance_attack import notifications_attaques
 
 from Utils.logger import create_logger
 
@@ -32,12 +31,7 @@ try :
     def logic():
         while True:
             for attack in notifications_attaques(s=s):
-                send_notification_attack(s=s, attack=attack)
-
-        
-                
-
-            
+                send_notification_attack(s=s, attack=attack)    
 
 except KeyboardInterrupt: # Si l'utilisateur fait CTRL+C
     logger.info("Interrupted Program. See you next time !")
