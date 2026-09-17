@@ -2,10 +2,10 @@ import requests
 from dotenv import load_dotenv
 import sys
 import os
-import asyncio
+import time
 
 from Core.Action_OG.send_attack_notification import send_notification_attack
-from Core.Observation.get_alliance_attack import notifications_attaques
+from Core.Observation.get_alliance_attack import get_attaques
 
 from Utils.logger import create_logger
 
@@ -30,8 +30,12 @@ try :
     # Boucle de fonctionnement
     def logic():
         while True:
-            for attack in notifications_attaques(s=s):
-                send_notification_attack(s=s, attack=attack)    
+            for attack in get_attaques(s=s):
+                send_notification_attack(s=s, attack=attack) 
+
+            time.sleep(20)
+
+    logic()   
 
 except KeyboardInterrupt: # Si l'utilisateur fait CTRL+C
     logger.info("Interrupted Program. See you next time !")

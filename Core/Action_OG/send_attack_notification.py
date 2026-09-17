@@ -1,5 +1,3 @@
-import requests
-import os
 import logging
 
 from Utils.send_notif import send_notif
@@ -55,6 +53,5 @@ def send_notification_attack(s, attack: tuple):
         }]
     }
 
-    send_notif(data=data)
     
-    logger.debug("Sent !")
+    logger.debug("Sent with status code " + str(send_notif(data=data)))
