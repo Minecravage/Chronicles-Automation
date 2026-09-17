@@ -6,6 +6,9 @@ attaques_en_cours = {}
 def get_attaques(s):
     logger = logging.getLogger("app")
     try:
+
+        attack = []
+
         logger.debug("Starting notif func...")
         r = s.get("https://chronicles20.be/alliance.php")
         logger.debug("Parsing of response")
@@ -16,8 +19,9 @@ def get_attaques(s):
                 "afficher_decompte_attaque_subie_encours_"
             )
         )
+
         for compte in attaques:
-            logger.debug("Attack found. Preparing infos...")
+            logger.debug("Getting infos...")
             attaque_id = compte["id"].split("_")[-1]
             bloc_attaque = compte.find_previous("div")
             noms = bloc_attaque.find_all("b")
@@ -36,10 +40,10 @@ def get_attaques(s):
             identifiant = (cible, attaquant, timestamp)
             if identifiant in attaques_en_cours:
                 continue
+
+            logger.info("ATTACK FOUND !!! Registering it.")
             # On mémorise l'attaque avec son timestamp
             attaques_en_cours[identifiant] = timestamp
-
-            attack = []
             attack.append(identifiant)
 
         logger.debug("End of notif func")
