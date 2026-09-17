@@ -1,4 +1,5 @@
 import logging
+import random
 
 from Utils.send_notif import send_notif
 
@@ -30,6 +31,8 @@ def send_notification_attack(s, attack: tuple):
     cible_mention = f"<@{discord_id}>" if discord_id else cible
 
     data = {
+        "username": "Nan mais c'est okay",
+        "avatar_url": "https://i.etsystatic.com/47531348/r/il/e93c9c/5929905166/il_fullxfull.5929905166_s0kn.jpg",
         "embeds": [{
             "title": "On se fait attaquer !",
             "color": 5254336,
@@ -49,7 +52,10 @@ def send_notification_attack(s, attack: tuple):
                     "value": f"<t:{timestamp}:T>",
                     "inline": False
                 }
-            ]
+            ],
+            "image": {
+                            "url": random.choice(["https://c.tenor.com/WcSr_LjrLfoAAAAd/tenor.gif", "https://c.tenor.com/TMhnW8cH10gAAAAC/tenor.gif", "https://images3.memedroid.com/images/UPLOADED810/660ab27b128e6.jpeg", "https://images7.memedroid.com/images/UPLOADED222/603948c0d345b.jpeg", "https://images3.memedroid.com/images/UPLOADED684/625dc26add1fd.jpeg", "https://images7.memedroid.com/images/UPLOADED767/66cc892f48fc3.jpeg", "https://c.tenor.com/DXUlofTJe9oAAAAC/tenor.gif"])
+                        }
         }]
     }
 
